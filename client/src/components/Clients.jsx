@@ -10,26 +10,25 @@ const Clients = () => {
   if (loading) return <Spinner />;
   if (error) return <p>Something went wrong!</p>;
 
-  return (
-    !loading &&
-    !error && (
-      <table className="table table-hover mt-3">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.clients.map((client) => (
-            <ClientRow key={client.id} client={client} />
-          ))}
-        </tbody>
-      </table>
-    )
+  return !loading && !error && data.clients.length > 0 ? (
+    <table className="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.clients.map((client) => (
+          <ClientRow key={client.id} client={client} />
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>No Clients</p>
   );
 };
 
